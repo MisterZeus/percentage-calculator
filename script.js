@@ -102,7 +102,7 @@ function calculateFrom(row) {
     } else if (row === 3) {
         if (Number.isFinite(oldValue) && Number.isFinite(newValue) && oldValue !== 0) {
             changeValue = newValue - oldValue
-            percentageChange = 100 * changeValue / oldValue
+            percentageChange = 100 * changeValue / Math.abs(oldValue)
         } else {
             percentageChange = NaN
         }
