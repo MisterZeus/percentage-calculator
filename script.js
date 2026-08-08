@@ -16,8 +16,8 @@ let newValue = Number.isFinite(parseNumericValue(newValueInput.value)) ? parseNu
 
 let changeValue = Number.isFinite(oldValue) && Number.isFinite(newValue) ? newValue - oldValue : NaN
 
-let percentageChange = Number.isFinite(parseNumericValue(percentageChangeResult.textContent))
-    ? parseNumericValue(percentageChangeResult.textContent)
+let percentageChange = Number.isFinite(parseNumericValue(percentageChangeResult.textContent.replace('%', '')))
+    ? parseNumericValue(percentageChangeResult.textContent.replace('%', ''))
     : NaN
 
 let decimalPlaces = 2
@@ -87,7 +87,7 @@ function renderResults() {
 }
 
 function calculateFrom(row) {
-    if (row === 0) {
+    if (row === 0 || row === -1) {
         if (Number.isFinite(whole) && Number.isFinite(percent)) {
             part = whole * percent / 100
         }
@@ -99,7 +99,8 @@ function calculateFrom(row) {
         if (Number.isFinite(part) && Number.isFinite(percent) && percent !== 0) {
             whole = part * 100 / percent
         }
-    } else if (row === 3) {
+    }
+    if (row === 3 || row === -1) {
         if (Number.isFinite(oldValue) && Number.isFinite(newValue) && oldValue !== 0) {
             changeValue = newValue - oldValue
             percentageChange = 100 * changeValue / Math.abs(oldValue)
@@ -125,6 +126,8 @@ function updateAll(activeInput = null) {
 
     syncInputGroup([oldValueInput], parseNumericValue(oldValueInput.value), oldValueSkipInput)
     syncInputGroup([newValueInput], parseNumericValue(newValueInput.value), newValueSkipInput)
+
+    calculateFrom(editedRow !== null ? editedRow : -1) //-1 is all rows
 
     renderResults()
 
