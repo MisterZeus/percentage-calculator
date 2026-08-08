@@ -13,33 +13,36 @@
     <body>
         <h1>Percentage Calculator</h1>
         <p>A simple tool to calculate percentages.</p>
-        <p>What is
-            <input autofocus class="percent" type="text" inputmode="numeric"
-                size="6" placeholder="percent" min="-999999999" max="999999999">
-            percent of
-            <input class="whole" type="text" inputmode="numeric" size="10"
-                placeholder="whole" min="-999999999" max="999999999">
-            ?
-            <span class="partResult"></span>
+        <p>What is <input autofocus class="percent" type="text"
+                inputmode="numeric" size="6" placeholder="percent"
+                min="-999999999" max="999999999" data-row="0"> percent of <input
+                class="whole" type="text" inputmode="numeric" size="10"
+                placeholder="whole" min="-999999999" max="999999999"
+                data-row="0"> ?
+        </p>
+        <p>
+            <span class="partResult">???</span>
         </p>
         <p>
             <input class="part" type="text" inputmode="numeric" size="10"
-                placeholder="part" min="-999999999" max="999999999">
-            is what percent of
-            <input class="whole" type="text" inputmode="numeric" size="10"
-                placeholder="whole" min="-999999999" max="999999999">
-            ?
-            <span class="percentResult"></span>
+                placeholder="part" min="-999999999" max="999999999"
+                data-row="1"> is what percent of <input class="whole"
+                type="text" inputmode="numeric" size="10" placeholder="whole"
+                min="-999999999" max="999999999" data-row="1"> ?
         </p>
         <p>
-            If
-            <input class="part" type="text" inputmode="numeric" size="10"
-                placeholder="part" min="-999999999" max="999999999">
-            is
-            <input class="percent" type="text" inputmode="numeric" size="6"
-                placeholder="percent" min="-999999999" max="999999999">
-            percent, what is 100%?
-            <span class="wholeResult"></span>
+            <span class="percentResult">???</span>
+        </p>
+        <p>
+            If <input class="part" type="text" inputmode="numeric" size="10"
+                placeholder="part" min="-999999999" max="999999999"
+                data-row="2"> is <input class="percent" type="text"
+                inputmode="numeric" size="6" placeholder="percent"
+                min="-999999999" max="999999999" data-row="2"> percent, what is
+            100% ?
+        </p>
+        <p>
+            <span class="wholeResult">???</span>
         </p>
         <div class="formula">
             <div class="fraction">

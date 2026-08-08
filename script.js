@@ -18,37 +18,44 @@ function parseNumericValue(rawValue) {
     return Number.isNaN(parsed) ? NaN : parsed
 }
 
-function syncInputGroup(inputs, notThisIndex, value) {
-    const displayValue = Number.isFinite(value) ? String(value) : ''
+function syncInputGroup(inputs, value, skipInput = null) {
+    const displayValue = Number.isFinite(value)
+        ? String(value % 1 === 0
+            ? value
+            : value.toFixed(decimalPlaces))
+        : ''
 
-    inputs.forEach((input, index) => {
-        if (index !== notThisIndex) {
+    inputs.forEach((input) => {
+        if (input !== skipInput) {
             input.value = displayValue
         }
     })
 }
 
-function renderResults() {
+function getInputForRow(inputs, row) {
+    return Array.from(inputs).find((input) => Number.parseInt(input.dataset.row, 10) === row) || null
+}
 
-    if (part % 1 === 0) { decimalPlaces = 0 }
-    if (whole % 1 === 0) { decimalPlaces = 0 }
-    if (percent % 1 === 0) { decimalPlaces = 0 }
+function renderResults() {
+    let partDecimalPlaces = part % 1 === 0 ? 0 : decimalPlaces
+    let wholeDecimalPlaces = whole % 1 === 0 ? 0 : decimalPlaces
+    let percentDecimalPlaces = percent % 1 === 0 ? 0 : decimalPlaces
 
     document.querySelectorAll('.partResult').forEach(span => {
-        span.textContent = Number.isFinite(part) ? part.toFixed(decimalPlaces) : ''
+        span.textContent = Number.isFinite(part) ? part.toFixed(partDecimalPlaces) : '???'
     })
     document.querySelectorAll('.percentResult').forEach(span => {
-        span.textContent = Number.isFinite(percent) ? percent.toFixed(decimalPlaces) : ''
+        span.textContent = Number.isFinite(percent) ? percent.toFixed(percentDecimalPlaces) : '???'
     })
     document.querySelectorAll('.wholeResult').forEach(span => {
-        span.textContent = Number.isFinite(whole) ? whole.toFixed(decimalPlaces) : ''
+        span.textContent = Number.isFinite(whole) ? whole.toFixed(wholeDecimalPlaces) : '???'
     })
 
     const blankFractionPlaceholder = '???'
 
-    document.querySelector('.numeratorPart').textContent = Number.isFinite(part) ? part.toFixed(decimalPlaces) : blankFractionPlaceholder
-    document.querySelector('.denominatorWhole').textContent = Number.isFinite(whole) ? whole.toFixed(decimalPlaces) : blankFractionPlaceholder
-    document.querySelector('.numeratorPercent').textContent = Number.isFinite(percent) ? percent.toFixed(decimalPlaces) : blankFractionPlaceholder
+    document.querySelector('.numeratorPart').textContent = Number.isFinite(part) ? part.toFixed(partDecimalPlaces) : blankFractionPlaceholder
+    document.querySelector('.denominatorWhole').textContent = Number.isFinite(whole) ? whole.toFixed(wholeDecimalPlaces) : blankFractionPlaceholder
+    document.querySelector('.numeratorPercent').textContent = Number.isFinite(percent) ? percent.toFixed(percentDecimalPlaces) : blankFractionPlaceholder
 }
 
 function calculateFrom(changedType) {
@@ -75,10 +82,16 @@ function calculateFrom(changedType) {
     }
 }
 
-function updateAll(notThisIndex) {
-    syncInputGroup(partInputs, notThisIndex, part)
-    syncInputGroup(wholeInputs, notThisIndex, whole)
-    syncInputGroup(percentInputs, notThisIndex, percent)
+function updateAll(activeInput = null) {
+    const editedRow = activeInput ? Number.parseInt(activeInput.dataset.row, 10) : null
+    const partSkipInput = editedRow !== null ? getInputForRow(partInputs, editedRow) : null
+    const wholeSkipInput = editedRow !== null ? getInputForRow(wholeInputs, editedRow) : null
+    const percentSkipInput = editedRow !== null ? getInputForRow(percentInputs, editedRow) : null
+
+    syncInputGroup(partInputs, part, partSkipInput)
+    syncInputGroup(wholeInputs, whole, wholeSkipInput)
+    syncInputGroup(percentInputs, percent, percentSkipInput)
+
     renderResults()
 }
 
@@ -105,7 +118,7 @@ function handleInput(input, notThisIndex, type) {
         percent = NaN
     }
 
-    updateAll(notThisIndex)
+    updateAll(input)
 }
 
 updateAll()
