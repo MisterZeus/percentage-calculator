@@ -81,7 +81,7 @@ function renderResults() {
 
     document.querySelector('.numeratorChange').textContent = toIntOrFixed(newValue) + " - " + toIntOrFixed(oldValue)
 
-    document.querySelector('.denominatorOld').textContent = toIntOrFixed(oldValue)
+    document.querySelector('.denominatorOld').textContent = "|" + toIntOrFixed(oldValue) + "|"
 
     document.querySelector('.numeratorPercentChange').textContent = toIntOrFixed(percentageChange)
 }
