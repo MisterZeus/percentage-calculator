@@ -8,6 +8,9 @@ const newValueInput = document.querySelector('.newValue')
 let part = NaN
 let whole = NaN
 let percent = NaN
+let oldValue = NaN
+let newValue = NaN
+let percentageChange = NaN
 
 let decimalPlaces = 2
 
@@ -45,6 +48,7 @@ function renderResults() {
     let partDecimalPlaces = part % 1 === 0 ? 0 : decimalPlaces
     let wholeDecimalPlaces = whole % 1 === 0 ? 0 : decimalPlaces
     let percentDecimalPlaces = percent % 1 === 0 ? 0 : decimalPlaces
+    let changeDecimalPlaces = percentageChange % 1 === 0 ? 0 : decimalPlaces
 
     document.querySelectorAll('.partResult').forEach(span => {
         span.textContent = Number.isFinite(part) ? part.toFixed(partDecimalPlaces) : '???'
@@ -55,12 +59,22 @@ function renderResults() {
     document.querySelectorAll('.wholeResult').forEach(span => {
         span.textContent = Number.isFinite(whole) ? whole.toFixed(wholeDecimalPlaces) : '???'
     })
+    document.querySelectorAll('.percentageChangeResult').forEach(span => {
+        span.textContent = Number.isFinite(percentageChange) ? percentageChange.toFixed(changeDecimalPlaces) : '???'
+    })
 
     const blankFractionPlaceholder = '???'
 
     document.querySelector('.numeratorPart').textContent = Number.isFinite(part) ? part.toFixed(partDecimalPlaces) : blankFractionPlaceholder
     document.querySelector('.denominatorWhole').textContent = Number.isFinite(whole) ? whole.toFixed(wholeDecimalPlaces) : blankFractionPlaceholder
     document.querySelector('.numeratorPercent').textContent = Number.isFinite(percent) ? percent.toFixed(percentDecimalPlaces) : blankFractionPlaceholder
+    document.querySelector('.numeratorChange').textContent = Number.isFinite(newValue) && Number.isFinite(oldValue)
+        ? (newValue - oldValue).toFixed(changeDecimalPlaces)
+        : blankFractionPlaceholder
+    document.querySelector('.denominatorOld').textContent = Number.isFinite(oldValue) ? oldValue.toFixed(changeDecimalPlaces) : blankFractionPlaceholder
+    document.querySelector('.numeratorPercentChange').textContent = Number.isFinite(percentageChange)
+        ? percentageChange.toFixed(changeDecimalPlaces)
+        : blankFractionPlaceholder
 }
 
 function calculateFrom(row) {
@@ -77,10 +91,10 @@ function calculateFrom(row) {
             whole = part * 100 / percent
         }
     } else if (row === 3) {
-        const oldValue = parseNumericValue(oldValueInput.value)
-        const newValue = parseNumericValue(newValueInput.value)
         if (Number.isFinite(oldValue) && Number.isFinite(newValue) && oldValue !== 0) {
             percentageChange = 100 * (newValue - oldValue) / oldValue
+        } else {
+            percentageChange = NaN
         }
     }
 }

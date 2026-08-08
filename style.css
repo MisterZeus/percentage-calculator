@@ -36,3 +36,12 @@ input {
 span {
     font-size: 1.2rem;
 }
+
+hr {
+    border: none;
+    border-top: 3px double #333333;
+    color: #333333;
+    overflow: visible;
+    text-align: center;
+    height: 5px;
+}
