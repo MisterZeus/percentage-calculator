@@ -12,112 +12,119 @@
     </head>
 
     <body>
-        <h1>Percentage Calculator</h1>
-        <p>What is
-            <label for="percent-0" class="sr-only">Percent</label>
-            <input id="percent-0" autofocus class="percent" type="text"
-                inputmode="numeric" size="6" placeholder="percent" data-row="0">
-            percent of
-            <label for="whole-0" class="sr-only">Whole</label>
-            <input id="whole-0" class="whole" type="text" inputmode="numeric"
-                size="12" placeholder="whole" data-row="0"> ?
-        </p>
-        <p>
-            <span class="partResult">???</span>
-        </p>
-        <p>
-            <label for="part-1" class="sr-only">Part</label>
-            <input id="part-1" class="part" type="text" inputmode="numeric"
-                size="12" placeholder="Part" data-row="1"> is what percent of
-            <label for="whole-1" class="sr-only">Whole</label>
-            <input id="whole-1" class="whole" type="text" inputmode="numeric"
-                size="12" placeholder="whole" data-row="1"> ?
-        </p>
-        <p>
-            <span class="percentResult">???%</span>
-        </p>
-        <p>
-            If
-            <label for="part-2" class="sr-only">Part</label>
-            <input id="part-2" class="part" type="text" inputmode="numeric"
-                size="12" placeholder="part" data-row="2"> is
-            <label for="percent-2" class="sr-only">Percent</label>
-            <input id="percent-2" class="percent" type="text"
-                inputmode="numeric" size="6" placeholder="percent" data-row="2">
-            percent, what is
-            100% ?
-        </p>
-        <p>
-            <span class="wholeResult">???</span>
-        </p>
-        <div class="formula">
-            <div class="fraction">
-                <span class="numerator">Part</span>
-                <span class="denominator">Whole</span>
-            </div>
-            <div class="fraction">
-                =
-            </div>
-            <div class="fraction">
-                <span class="numerator numeratorPart">???</span>
-                <span class="denominator denominatorWhole">???</span>
-            </div>
-            <div class="fraction">
-                =
-            </div>
-            <div class="fraction">
-                <span class="numerator numeratorPercent">???</span>
-                <span class="denominator">100</span>
-            </div>
-            <div class="fraction">
-                ►
-            </div>
-            <div class="fraction">
+        <header>Percentage Calculator</header>
+        <main>
+            <p>What is
+                <label for="percent-0" class="sr-only">Percent</label>
+                <input id="percent-0" autofocus class="percent" type="text"
+                    inputmode="numeric" size="6" placeholder="percent"
+                    data-row="0">
+                percent of
+                <label for="whole-0" class="sr-only">Whole</label>
+                <input id="whole-0" class="whole" type="text"
+                    inputmode="numeric" size="12" placeholder="whole"
+                    data-row="0"> ?
+            </p>
+            <p>
+                <span class="partResult">???</span>
+            </p>
+            <p>
+                <label for="part-1" class="sr-only">Part</label>
+                <input id="part-1" class="part" type="text" inputmode="numeric"
+                    size="12" placeholder="Part" data-row="1"> is what percent
+                of
+                <label for="whole-1" class="sr-only">Whole</label>
+                <input id="whole-1" class="whole" type="text"
+                    inputmode="numeric" size="12" placeholder="whole"
+                    data-row="1"> ?
+            </p>
+            <p>
                 <span class="percentResult">???%</span>
+            </p>
+            <p>
+                If
+                <label for="part-2" class="sr-only">Part</label>
+                <input id="part-2" class="part" type="text" inputmode="numeric"
+                    size="12" placeholder="part" data-row="2"> is
+                <label for="percent-2" class="sr-only">Percent</label>
+                <input id="percent-2" class="percent" type="text"
+                    inputmode="numeric" size="6" placeholder="percent"
+                    data-row="2">
+                percent, what is
+                100% ?
+            </p>
+            <p>
+                <span class="wholeResult">???</span>
+            </p>
+            <div class="formula">
+                <div class="fraction">
+                    <span class="numerator">Part</span>
+                    <span class="denominator">Whole</span>
+                </div>
+                <div class="fraction">
+                    =
+                </div>
+                <div class="fraction">
+                    <span class="numerator numeratorPart">???</span>
+                    <span class="denominator denominatorWhole">???</span>
+                </div>
+                <div class="fraction">
+                    =
+                </div>
+                <div class="fraction">
+                    <span class="numerator numeratorPercent">???</span>
+                    <span class="denominator">100</span>
+                </div>
+                <div class="fraction">
+                    ►
+                </div>
+                <div class="fraction">
+                    <span class="percentResult">???%</span>
+                </div>
             </div>
-        </div>
-        <hr>
-        <p>
-            What is the percentage change from
-            <label for="old-value" class="sr-only">Old value</label>
-            <input id="old-value" class="oldValue" type="text"
-                inputmode="numeric" size="12" placeholder="old value"
-                data-row="3">
-            to
-            <label for="new-value" class="sr-only">New value</label>
-            <input id="new-value" class="newValue" type="text"
-                inputmode="numeric" size="12" placeholder="new value"
-                data-row="3">?
-        </p>
-        <div>
-            <span class="percentageChangeResult">???%</span>
-        </div>
-        <div class="formula">
-            <div class="fraction">
-                <span class="numerator">New - Old</span>
-                <span class="denominator">|Old|</span>
-            </div>
-            <div class="fraction">
-                =
-            </div>
-            <div class="fraction">
-                <span class="numerator numeratorChange">??? - ???</span>
-                <span class="denominator denominatorOld">|???|</span>
-            </div>
-            <div class="fraction">
-                =
-            </div>
-            <div class="fraction">
-                <span class="numerator numeratorPercentChange">???</span>
-                <span class="denominator">100</span>
-            </div>
-            <div class="fraction">
-                ►
-            </div>
-            <div class="fraction">
+            <hr>
+            <p>
+                What is the percentage change from
+                <label for="old-value" class="sr-only">Old value</label>
+                <input id="old-value" class="oldValue" type="text"
+                    inputmode="numeric" size="12" placeholder="old value"
+                    data-row="3">
+                to
+                <label for="new-value" class="sr-only">New value</label>
+                <input id="new-value" class="newValue" type="text"
+                    inputmode="numeric" size="12" placeholder="new value"
+                    data-row="3">?
+            </p>
+            <div>
                 <span class="percentageChangeResult">???%</span>
             </div>
-        </div>
+            <div class="formula">
+                <div class="fraction">
+                    <span class="numerator">New - Old</span>
+                    <span class="denominator">|Old|</span>
+                </div>
+                <div class="fraction">
+                    =
+                </div>
+                <div class="fraction">
+                    <span class="numerator numeratorChange">??? - ???</span>
+                    <span class="denominator denominatorOld">|???|</span>
+                </div>
+                <div class="fraction">
+                    =
+                </div>
+                <div class="fraction">
+                    <span class="numerator numeratorPercentChange">???</span>
+                    <span class="denominator">100</span>
+                </div>
+                <div class="fraction">
+                    ►
+                </div>
+                <div class="fraction">
+                    <span class="percentageChangeResult">???%</span>
+                </div>
+            </div>
+        </main>
         <hr>
         <p>
             <input type="number" id="decimalPlaces" value=2 size="5"
@@ -131,10 +138,12 @@
         <p>
             <input type="button" id="reset-button" value="Reset">
         </p>
-        <p>
-            <a href="https://github.com/MisterZeus/percentage-calculator"
-                target="_blank">Source Code</a>
-        </p>
+        <footer>
+            <p>
+                <a href="https://github.com/MisterZeus/percentage-calculator"
+                    target="_blank">Source Code</a>
+            </p>
+        </footer>
         <script defer src="script.js"></script>
     </body>
 
