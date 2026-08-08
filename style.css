@@ -3,12 +3,15 @@ body {
     margin: 20px;
     justify-content: center;
     text-align: center;
+    overflow-x: auto;
+    overflow-y: auto;
 }
 
 input {
     text-align: right;
     min-width: 3ch;
     width: auto;
+    max-width: 100%;
 }
 
 .formula {
@@ -16,26 +19,45 @@ input {
     justify-content: center;
     align-items: center;
     margin-top: 10px;
+    flex-wrap: wrap;
+    gap: 0.15rem 0.35rem;
+    overflow-x: auto;
 }
 
 .fraction {
-    display: inline-block;
-    text-align: center;
-    margin: 0 0.2rem;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    line-height: 1.1;
+    position: relative;
+}
+
+.numerator,
+.denominator {
+    display: block;
     white-space: nowrap;
 }
 
-.numerator {
-    display: block;
+.fraction:not(:has(.numerator))::after {
+    display: none;
 }
 
-.denominator {
-    display: block;
-    border-top: 2px solid black;
+.fraction:has(.numerator)::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 2px;
+    background: black;
 }
 
 span {
     font-size: 1.2rem;
+    white-space: nowrap;
 }
 
 hr {
