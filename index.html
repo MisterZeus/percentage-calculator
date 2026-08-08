@@ -13,28 +13,33 @@
 
     <body>
         <h1>Percentage Calculator</h1>
-        <p>What is <input autofocus class="percent" type="text"
-                inputmode="numeric" size="6" placeholder="percent" data-row="0">
-            percent of <input class="whole" type="text" inputmode="numeric"
-                size="12" placeholder="whole" data-row="0"> ?
+        <p>What is <label name="percent"><input autofocus class="percent"
+                    type="text" inputmode="numeric" size="6"
+                    placeholder="percent" data-row="0"></label>
+            percent of <label name="whole"><input class="whole" type="text"
+                    inputmode="numeric" size="12" placeholder="whole"
+                    data-row="0"></label> ?
         </p>
         <p>
             <span class="partResult">???</span>
         </p>
         <p>
-            <input class="part" type="text" inputmode="numeric" size="12"
-                placeholder="Part" data-row="1"> is what percent of <input
-                class="whole" type="text" inputmode="numeric" size="12"
-                placeholder="whole" data-row="1"> ?
+            <label name="part"><input class="part" type="text"
+                    inputmode="numeric" size="12" placeholder="Part"
+                    data-row="1"></label> is what percent of <label
+                name="whole"><input class="whole" type="text"
+                    inputmode="numeric" size="12" placeholder="whole"
+                    data-row="1"></label> ?
         </p>
         <p>
             <span class="percentResult">???%</span>
         </p>
         <p>
-            If <input class="part" type="text" inputmode="numeric" size="12"
-                placeholder="part" data-row="2"> is <input class="percent"
-                type="text" inputmode="numeric" size="6" placeholder="percent"
-                data-row="2"> percent, what is
+            If <label name="part"><input class="part" type="text"
+                    inputmode="numeric" size="12" placeholder="part"
+                    data-row="2"></label> is <label name="percent"><input
+                    class="percent" type="text" inputmode="numeric" size="6"
+                    placeholder="percent" data-row="2"></label> percent, what is
             100% ?
         </p>
         <p>
@@ -70,11 +75,13 @@
         <p>
             What is the percentage change
             <br>from
-            <input class="oldValue" type="text" inputmode="numeric" size="12"
-                placeholder="old value" data-row="3">
+            <label name="oldValue"><input class="oldValue" type="text"
+                    inputmode="numeric" size="12" placeholder="old value"
+                    data-row="3"></label>
             to
-            <input class="newValue" type="text" inputmode="numeric" size="12"
-                placeholder="new value" data-row="3"> ?
+            <label name="newValue"><input class="newValue" type="text"
+                    inputmode="numeric" size="12" placeholder="new value"
+                    data-row="3"></label>?
         </p>
         <div>
             <span class="percentageChangeResult">???%</span>
