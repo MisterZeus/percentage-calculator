@@ -7,11 +7,16 @@ body {
     overflow-y: auto;
 }
 
-input {
+input[type="text"] {
     text-align: right;
     min-width: 3ch;
     width: auto;
     max-width: 100%;
+}
+
+input[type="number"]#decimalPlaces {
+    width: 5ch;
+    min-width: 5ch;
 }
 
 .sr-only {

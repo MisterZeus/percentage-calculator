@@ -2,12 +2,14 @@ const partInputs = document.querySelectorAll('.part')
 const wholeInputs = document.querySelectorAll('.whole')
 const percentInputs = document.querySelectorAll('.percent')
 
-const showFormulasCheckbox = document.querySelector('#show-formulas')
-
 const oldValueInput = document.querySelector('.oldValue')
 const newValueInput = document.querySelector('.newValue')
 
 const percentageChangeResult = document.querySelector('.percentageChangeResult')
+
+const decimalPlacesInput = document.querySelector('#decimalPlaces')
+const showFormulasCheckbox = document.querySelector('#show-formulas')
+const resetButton = document.querySelector('#reset-button')
 
 let part = Number.isFinite(parseNumericValue(partInputs[0].value)) ? parseNumericValue(partInputs[0].value) : NaN
 let whole = Number.isFinite(parseNumericValue(wholeInputs[0].value)) ? parseNumericValue(wholeInputs[0].value) : NaN
@@ -22,7 +24,9 @@ let percentageChange = Number.isFinite(parseNumericValue(percentageChangeResult.
     ? parseNumericValue(percentageChangeResult.textContent.replace('%', ''))
     : NaN
 
-let decimalPlaces = 2
+let decimalPlaces = Number.isFinite(parseNumericValue(decimalPlacesInput.value))
+    ? parseNumericValue(decimalPlacesInput.value)
+    : 2
 
 function toggleFormulaVisibility() {
     const formulaElements = document.querySelectorAll('.formula')
@@ -31,6 +35,18 @@ function toggleFormulaVisibility() {
     formulaElements.forEach((formula) => {
         formula.style.display = showFormula ? 'flex' : 'none'
     })
+}
+
+function resetCalculator() {
+    part = NaN
+    whole = NaN
+    percent = NaN
+
+    oldValue = NaN
+    newValue = NaN
+
+    changeValue = NaN
+    percentageChange = NaN
 }
 
 function restoreStateFromUrl() {
@@ -131,7 +147,7 @@ function toIntOrFixed(value) {
     if (!Number.isFinite(value)) {
         return '???'
     }
-    return value % 1 === 0 ? value.toFixed(0) : value.toFixed(decimalPlaces)
+    return value % 1 === 0 ? value.toFixed(0).toLocaleString() : value.toFixed(decimalPlaces).toLocaleString()
 }
 
 function renderResults() {
@@ -283,4 +299,17 @@ percentInputs.forEach((input, index) => {
 oldValueInput.addEventListener('input', (event) => handleInput(oldValueInput, 'oldValue'))
 newValueInput.addEventListener('input', (event) => handleInput(newValueInput, 'newValue'))
 
+decimalPlacesInput.addEventListener('input', (event) => {
+    decimalPlaces = Number.isFinite(parseNumericValue(decimalPlacesInput.value))
+        ? parseNumericValue(decimalPlacesInput.value)
+        : 2
+
+    updateAll()
+})
+
 showFormulasCheckbox.addEventListener('change', toggleFormulaVisibility)
+
+resetButton.addEventListener('click', () => {
+    resetCalculator()
+    updateAll()
+})
