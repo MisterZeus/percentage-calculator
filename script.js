@@ -2,6 +2,8 @@ const partInputs = document.querySelectorAll('.part')
 const wholeInputs = document.querySelectorAll('.whole')
 const percentInputs = document.querySelectorAll('.percent')
 
+const showFormulasCheckbox = document.querySelector('#show-formulas')
+
 const oldValueInput = document.querySelector('.oldValue')
 const newValueInput = document.querySelector('.newValue')
 
@@ -21,6 +23,79 @@ let percentageChange = Number.isFinite(parseNumericValue(percentageChangeResult.
     : NaN
 
 let decimalPlaces = 2
+
+function toggleFormulaVisibility() {
+    const formulaElements = document.querySelectorAll('.formula')
+    const showFormula = showFormulasCheckbox.checked
+
+    formulaElements.forEach((formula) => {
+        formula.style.display = showFormula ? 'flex' : 'none'
+    })
+}
+
+function restoreStateFromUrl() {
+    const params = new URLSearchParams(window.location.search)
+
+    const restoredPart = params.get('p')
+    const restoredWhole = params.get('w')
+    const restoredPercent = params.get('pc')
+    const restoredOldValue = params.get('o')
+    const restoredNewValue = params.get('n')
+
+    if (restoredPart !== null) {
+        part = parseNumericValue(restoredPart)
+    }
+    if (restoredWhole !== null) {
+        whole = parseNumericValue(restoredWhole)
+    }
+    if (restoredPercent !== null) {
+        percent = parseNumericValue(restoredPercent)
+    }
+    if (restoredOldValue !== null) {
+        oldValue = parseNumericValue(restoredOldValue)
+    }
+    if (restoredNewValue !== null) {
+        newValue = parseNumericValue(restoredNewValue)
+    }
+}
+
+function updateUrlFromState() {
+    const url = new URL(window.location.href)
+    const params = url.searchParams
+
+    if (Number.isFinite(part)) {
+        params.set('p', String(part))
+    } else {
+        params.delete('p')
+    }
+
+    if (Number.isFinite(whole)) {
+        params.set('w', String(whole))
+    } else {
+        params.delete('w')
+    }
+
+    if (Number.isFinite(percent)) {
+        params.set('pc', String(percent))
+    } else {
+        params.delete('pc')
+    }
+
+    if (Number.isFinite(oldValue)) {
+        params.set('o', String(oldValue))
+    } else {
+        params.delete('o')
+    }
+
+    if (Number.isFinite(newValue)) {
+        params.set('n', String(newValue))
+    } else {
+        params.delete('n')
+    }
+
+    url.search = params.toString() ? `?${params.toString()}` : ''
+    window.history.replaceState({}, '', url.toString())
+}
 
 function parseNumericValue(rawValue) {
     const value = rawValue.trim()
@@ -124,12 +199,13 @@ function updateAll(activeInput = null) {
     syncInputGroup(wholeInputs, whole, wholeSkipInput)
     syncInputGroup(percentInputs, percent, percentSkipInput)
 
-    syncInputGroup([oldValueInput], parseNumericValue(oldValueInput.value), oldValueSkipInput)
-    syncInputGroup([newValueInput], parseNumericValue(newValueInput.value), newValueSkipInput)
+    syncInputGroup([oldValueInput], oldValue, oldValueSkipInput)
+    syncInputGroup([newValueInput], newValue, newValueSkipInput)
 
     calculateFrom(editedRow !== null ? editedRow : -1) //-1 is all rows
 
     renderResults()
+    updateUrlFromState()
 
     document.querySelectorAll('input').forEach((input) => resizeInput(input))
 }
@@ -187,9 +263,12 @@ function setupInputSizing() {
     })
 }
 
+restoreStateFromUrl()
 updateAll()
 
 setupInputSizing()
+
+toggleFormulaVisibility()
 
 partInputs.forEach((input, index) => {
     input.addEventListener('input', (event) => handleInput(input, 'part'))
@@ -203,3 +282,5 @@ percentInputs.forEach((input, index) => {
 
 oldValueInput.addEventListener('input', (event) => handleInput(oldValueInput, 'oldValue'))
 newValueInput.addEventListener('input', (event) => handleInput(newValueInput, 'newValue'))
+
+showFormulasCheckbox.addEventListener('change', toggleFormulaVisibility)
