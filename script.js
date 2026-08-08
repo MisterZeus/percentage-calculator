@@ -87,6 +87,13 @@ function updateAll(activeInput = null) {
     syncInputGroup(percentInputs, percent, percentSkipInput)
 
     renderResults()
+    document.querySelectorAll('input').forEach((input) => resizeInput(input))
+}
+
+function resizeInput(input) {
+    const value = input.value || input.placeholder || ''
+    const width = Math.max(3, Math.min(20, value.length + 1))
+    input.style.width = `${width}ch`
 }
 
 function handleInput(input, type) {
@@ -113,9 +120,18 @@ function handleInput(input, type) {
     }
 
     updateAll(input)
+    resizeInput(input)
+}
+
+function setupInputSizing() {
+    document.querySelectorAll('input').forEach((input) => {
+        resizeInput(input)
+        input.addEventListener('input', () => resizeInput(input))
+    })
 }
 
 updateAll()
+setupInputSizing()
 
 partInputs.forEach((input, index) => {
     input.addEventListener('input', (event) => handleInput(input, 'part'))

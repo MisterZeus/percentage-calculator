@@ -5,6 +5,12 @@ body {
     text-align: center;
 }
 
+input {
+    text-align: right;
+    min-width: 3ch;
+    width: auto;
+}
+
 .formula {
     display: flex;
     justify-content: center;
@@ -25,4 +31,8 @@ body {
 .denominator {
     display: block;
     border-top: 2px solid black;
+}
+
+span {
+    font-size: 1.2rem;
 }
