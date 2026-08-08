@@ -6,7 +6,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Percentage Calculator</title>
-        <meta description="A simple percentage calculator.">
         <meta name="description" content="A simple percentage calculator.">
         <meta name="keywords" content="percentage, calculator, math, tool">
         <link rel="stylesheet" href="style.css">
@@ -65,6 +64,43 @@
             </div>
             <div class="fraction">
                 <span class="percentResult">Percent</span>%
+            </div>
+        </div>
+        <p>
+            What is the percentage change from
+            <input class="oldValue" type="text" inputmode="numeric" size="12"
+                placeholder="old value" data-row="3">
+            to
+            <input class="newValue" type="text" inputmode="numeric" size="12"
+                placeholder="new value" data-row="3">&nbsp;?
+        </p>
+        <div>
+            <span class="percentageChangeResult">???</span>%
+        </div>
+        <div class="formula">
+            <div class="fraction">
+                <span class="numerator">New - Old</span>
+                <span class="denominator">Old</span>
+            </div>
+            <div class="fraction">
+                =
+            </div>
+            <div class="fraction">
+                <span class="numerator numeratorChange">???</span>
+                <span class="denominator denominatorOld">???</span>
+            </div>
+            <div class="fraction">
+                =
+            </div>
+            <div class="fraction">
+                <span class="numerator numeratorPercentChange">???</span>
+                <span class="denominator">100</span>
+            </div>
+            <div class="fraction">
+                =
+            </div>
+            <div class="fraction">
+                <span class="percentageChangeResult">Percentage Change</span>%
             </div>
         </div>
         <script src="script.js"></script>

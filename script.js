@@ -2,6 +2,9 @@ const partInputs = document.querySelectorAll('.part')
 const wholeInputs = document.querySelectorAll('.whole')
 const percentInputs = document.querySelectorAll('.percent')
 
+const oldValueInput = document.querySelector('.oldValue')
+const newValueInput = document.querySelector('.newValue')
+
 let part = NaN
 let whole = NaN
 let percent = NaN
@@ -73,20 +76,34 @@ function calculateFrom(row) {
         if (Number.isFinite(part) && Number.isFinite(percent) && percent !== 0) {
             whole = part * 100 / percent
         }
+    } else if (row === 3) {
+        const oldValue = parseNumericValue(oldValueInput.value)
+        const newValue = parseNumericValue(newValueInput.value)
+        if (Number.isFinite(oldValue) && Number.isFinite(newValue) && oldValue !== 0) {
+            percentageChange = 100 * (newValue - oldValue) / oldValue
+        }
     }
 }
 
 function updateAll(activeInput = null) {
     const editedRow = activeInput ? Number.parseInt(activeInput.dataset.row, 10) : null
+
     const partSkipInput = editedRow !== null ? getInputForRow(partInputs, editedRow) : null
     const wholeSkipInput = editedRow !== null ? getInputForRow(wholeInputs, editedRow) : null
     const percentSkipInput = editedRow !== null ? getInputForRow(percentInputs, editedRow) : null
+
+    const oldValueSkipInput = editedRow !== null && editedRow === 3 ? oldValueInput : null
+    const newValueSkipInput = editedRow !== null && editedRow === 3 ? newValueInput : null
 
     syncInputGroup(partInputs, part, partSkipInput)
     syncInputGroup(wholeInputs, whole, wholeSkipInput)
     syncInputGroup(percentInputs, percent, percentSkipInput)
 
+    syncInputGroup([oldValueInput], parseNumericValue(oldValueInput.value), oldValueSkipInput)
+    syncInputGroup([newValueInput], parseNumericValue(newValueInput.value), newValueSkipInput)
+
     renderResults()
+
     document.querySelectorAll('input').forEach((input) => resizeInput(input))
 }
 
@@ -103,8 +120,12 @@ function handleInput(input, type) {
         part = parsed
     } else if (type === 'whole') {
         whole = parsed
-    } else {
+    } else if (type === 'percent') {
         percent = parsed
+    } else if (type === 'oldValue') {
+        oldValue = parsed
+    } else if (type === 'newValue') {
+        newValue = parsed
     }
 
     calculateFrom(Number.parseInt(input.dataset.row, 10))
@@ -117,6 +138,12 @@ function handleInput(input, type) {
     }
     if (!Number.isFinite(percent)) {
         percent = NaN
+    }
+    if (!Number.isFinite(oldValue)) {
+        oldValue = NaN
+    }
+    if (!Number.isFinite(newValue)) {
+        newValue = NaN
     }
 
     updateAll(input)
@@ -131,6 +158,7 @@ function setupInputSizing() {
 }
 
 updateAll()
+
 setupInputSizing()
 
 partInputs.forEach((input, index) => {
@@ -142,3 +170,6 @@ wholeInputs.forEach((input, index) => {
 percentInputs.forEach((input, index) => {
     input.addEventListener('input', (event) => handleInput(input, 'percent'))
 })
+
+oldValueInput.addEventListener('input', (event) => handleInput(oldValueInput, 'oldValue'))
+newValueInput.addEventListener('input', (event) => handleInput(newValueInput, 'newValue'))
