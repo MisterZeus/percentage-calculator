@@ -15,7 +15,7 @@ body {
 .fraction {
     display: inline-block;
     text-align: center;
-    margin: 0 10px;
+    margin: 0 0.2rem;
 }
 
 .numerator {
