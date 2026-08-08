@@ -20,9 +20,11 @@ function parseNumericValue(rawValue) {
 
 function syncInputGroup(inputs, value, skipInput = null) {
     const displayValue = Number.isFinite(value)
-        ? String(value % 1 === 0
-            ? value
-            : value.toFixed(decimalPlaces))
+        ? String(
+            value % 1 === 0
+                ? Math.round(value)
+                : value.toFixed(decimalPlaces)
+        )
         : ''
 
     inputs.forEach((input) => {
@@ -58,25 +60,17 @@ function renderResults() {
     document.querySelector('.numeratorPercent').textContent = Number.isFinite(percent) ? percent.toFixed(percentDecimalPlaces) : blankFractionPlaceholder
 }
 
-function calculateFrom(changedType) {
-    if (changedType === 'part') {
-        if (Number.isFinite(part) && Number.isFinite(whole) && whole !== 0) {
-            percent = 100 * part / whole
-        } else if (Number.isFinite(part) && Number.isFinite(percent) && percent !== 0) {
-            whole = part * 100 / percent
-        }
-    }
-    else if (changedType === 'whole') {
+function calculateFrom(row) {
+    if (row === 0) {
         if (Number.isFinite(whole) && Number.isFinite(percent)) {
             part = whole * percent / 100
-        } else if (Number.isFinite(whole) && Number.isFinite(part) && whole !== 0) {
+        }
+    } else if (row === 1) {
+        if (Number.isFinite(part) && Number.isFinite(whole) && whole !== 0) {
             percent = 100 * part / whole
         }
-    }
-    else if (changedType === 'percent') {
-        if (Number.isFinite(percent) && Number.isFinite(whole)) {
-            part = whole * percent / 100
-        } else if (Number.isFinite(percent) && Number.isFinite(part) && percent !== 0) {
+    } else if (row === 2) {
+        if (Number.isFinite(part) && Number.isFinite(percent) && percent !== 0) {
             whole = part * 100 / percent
         }
     }
@@ -95,7 +89,7 @@ function updateAll(activeInput = null) {
     renderResults()
 }
 
-function handleInput(input, notThisIndex, type) {
+function handleInput(input, type) {
     const parsed = parseNumericValue(input.value)
 
     if (type === 'part') {
@@ -106,7 +100,7 @@ function handleInput(input, notThisIndex, type) {
         percent = parsed
     }
 
-    calculateFrom(type)
+    calculateFrom(Number.parseInt(input.dataset.row, 10))
 
     if (!Number.isFinite(part)) {
         part = NaN
@@ -124,11 +118,11 @@ function handleInput(input, notThisIndex, type) {
 updateAll()
 
 partInputs.forEach((input, index) => {
-    input.addEventListener('input', (event) => handleInput(input, index, 'part'))
+    input.addEventListener('input', (event) => handleInput(input, 'part'))
 })
 wholeInputs.forEach((input, index) => {
-    input.addEventListener('input', (event) => handleInput(input, index, 'whole'))
+    input.addEventListener('input', (event) => handleInput(input, 'whole'))
 })
 percentInputs.forEach((input, index) => {
-    input.addEventListener('input', (event) => handleInput(input, index, 'percent'))
+    input.addEventListener('input', (event) => handleInput(input, 'percent'))
 })
