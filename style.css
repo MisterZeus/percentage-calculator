@@ -1,0 +1,28 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    justify-content: center;
+    text-align: center;
+}
+
+.formula {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.fraction {
+    display: inline-block;
+    text-align: center;
+    margin: 0 10px;
+}
+
+.numerator {
+    display: block;
+}
+
+.denominator {
+    display: block;
+    border-top: 2px solid black;
+}

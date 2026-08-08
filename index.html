@@ -7,17 +7,67 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Percentage Calculator</title>
         <meta name="description" content="A simple percentage calculator.">
-        <meta http-equiv="Content-Security-Policy"
-            content="default-src 'self'; script-src cdn.report-uri.com; style-src 'self'; connect-src greeky.org greeky.report-uri.com; upgrade-insecure-requests">
-        <script type="text/json" id="csp-report-uri">
-    {"keys" : ["blockedURI", "columnNumber", "disposition", "documentURI", "effectiveDirective", "lineNumber", "originalPolicy", "referrer", "sample", "sourceFile", "statusCode", "violatedDirective"],
-    "reportUri" : "https://greeky.report-uri.com/r/d/csp/enforce"}
-    </script>
+        <link rel="stylesheet" href="style.css">
     </head>
 
     <body>
         <h1>Percentage Calculator</h1>
         <p>A simple tool to calculate percentages.</p>
+        <p>What is
+            <input autofocus class="percent" type="text" inputmode="numeric"
+                size="6" placeholder="percent" min="-999999999" max="999999999">
+            percent of
+            <input class="whole" type="text" inputmode="numeric" size="10"
+                placeholder="whole" min="-999999999" max="999999999">
+            ?
+            <span class="partResult"></span>
+        </p>
+        <p>
+            <input class="part" type="text" inputmode="numeric" size="10"
+                placeholder="part" min="-999999999" max="999999999">
+            is what percent of
+            <input class="whole" type="text" inputmode="numeric" size="10"
+                placeholder="whole" min="-999999999" max="999999999">
+            ?
+            <span class="percentResult"></span>
+        </p>
+        <p>
+            If
+            <input class="part" type="text" inputmode="numeric" size="10"
+                placeholder="part" min="-999999999" max="999999999">
+            is
+            <input class="percent" type="text" inputmode="numeric" size="6"
+                placeholder="percent" min="-999999999" max="999999999">
+            percent, what is 100%?
+            <span class="wholeResult"></span>
+        </p>
+        <div class="formula">
+            <div class="fraction">
+                <span class="numerator">Part</span>
+                <span class="denominator">Whole</span>
+            </div>
+            <div class="fraction">
+                =
+            </div>
+            <div class="fraction">
+                <span class="numerator numeratorPart">???</span>
+                <span class="denominator denominatorWhole">???</span>
+            </div>
+            <div class="fraction">
+                =
+            </div>
+            <div class="fraction">
+                <span class="numerator numeratorPercent">???</span>
+                <span class="denominator">100</span>
+            </div>
+            <div class="fraction">
+                =
+            </div>
+            <div class="fraction">
+                <span class="percentFormula">Percent</span>%
+            </div>
+        </div>
+        <script src="script.js"></script>
     </body>
 
 </html>
