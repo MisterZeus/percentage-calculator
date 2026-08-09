@@ -10,13 +10,21 @@ body {
 input[type="text"] {
     text-align: right;
     min-width: 3ch;
-    width: auto;
+    width: 6ch;
     max-width: 100%;
 }
 
 input[type="number"]#decimalPlaces {
-    width: 5ch;
+    width: 3ch;
     min-width: 5ch;
+}
+
+input[type="button"] {
+    padding: 5px 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 5px;
+    margin: 5px;
 }
 
 .sr-only {
@@ -84,12 +92,4 @@ hr {
     overflow: visible;
     text-align: center;
     height: 5px;
-}
-
-input[type="button"] {
-    padding: 5px 10px;
-    font-size: 1rem;
-    cursor: pointer;
-    padding: 5px;
-    margin: 5px;
 }

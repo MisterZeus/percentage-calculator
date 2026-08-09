@@ -223,7 +223,7 @@ function updateAll(activeInput = null) {
     renderResults()
     updateUrlFromState()
 
-    document.querySelectorAll('input').forEach((input) => resizeInput(input))
+    document.querySelectorAll('input[type="text"]').forEach((input) => resizeInput(input))
 }
 
 function resizeInput(input) {
