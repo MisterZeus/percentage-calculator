@@ -2,8 +2,8 @@ const partInputs = document.querySelectorAll('.part')
 const wholeInputs = document.querySelectorAll('.whole')
 const percentInputs = document.querySelectorAll('.percent')
 
-const oldValueInput = document.querySelector('#old-value')
-const newValueInput = document.querySelector('#new-value')
+const oldValueInput = document.getElementById('old-value')
+const newValueInput = document.getElementById('new-value')
 
 const percentageChangeResult = document.querySelector('.percentageChangeResult')
 
