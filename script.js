@@ -270,7 +270,7 @@ function handleInput(input, type) {
 }
 
 function setupInputSizing() {
-    document.querySelectorAll('input').forEach((input) => {
+    document.querySelectorAll('input[type="text"]').forEach((input) => {
         resizeInput(input)
         input.addEventListener('input', () => resizeInput(input))
         input.addEventListener('focus', () => {
