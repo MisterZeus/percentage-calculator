@@ -14,6 +14,11 @@ input[type="text"] {
     max-width: 100%;
 }
 
+input[class="percentchange"] {
+    min-width: 3ch;
+    width: 10ch;
+}
+
 input[type="number"]#decimalPlaces {
     width: 3ch;
     min-width: 5ch;
