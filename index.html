@@ -6,13 +6,21 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Percentage Calculator</title>
-        <meta name="description" content="A simple percentage calculator.">
+        <meta name="description" content="A fast and lightweight percentage calculator,
+        that can calculate percentages in many ways, and percentage change.">
         <meta name="keywords" content="percentage, calculator, math, tool">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style.css" media="print"
+            onload="this.media='all'">
+        <noscript>
+            <link rel="stylesheet" href="style.css">
+        </noscript>
+        <script defer src="script.js"></script>
     </head>
 
     <body>
-        <header>Percentage Calculator</header>
+        <header>
+            <h1>Percentage Calculator</h1>
+        </header>
         <main>
             <p>What is
                 <label for="percent-0" class="sr-only">Percent</label>
@@ -144,7 +152,6 @@
                     target="_blank">Source Code</a>
             </p>
         </footer>
-        <script defer src="script.js"></script>
     </body>
 
 </html>
