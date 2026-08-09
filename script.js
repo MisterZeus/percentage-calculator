@@ -2,8 +2,8 @@ const partInputs = document.querySelectorAll('.part')
 const wholeInputs = document.querySelectorAll('.whole')
 const percentInputs = document.querySelectorAll('.percent')
 
-const oldValueInput = document.querySelector('.oldValue')
-const newValueInput = document.querySelector('.newValue')
+const oldValueInput = document.querySelector('#old-value')
+const newValueInput = document.querySelector('#new-value')
 
 const percentageChangeResult = document.querySelector('.percentageChangeResult')
 
@@ -269,20 +269,9 @@ function handleInput(input, type) {
     resizeInput(input)
 }
 
-function setupInputSizing() {
-    document.querySelectorAll('input[type="text"]').forEach((input) => {
-        resizeInput(input)
-        input.addEventListener('input', () => resizeInput(input))
-        input.addEventListener('focus', () => {
-            input.select()
-        })
-    })
-}
-
 restoreStateFromUrl()
-updateAll()
 
-setupInputSizing()
+updateAll()
 
 toggleFormulaVisibility()
 
@@ -312,4 +301,10 @@ showFormulasCheckbox.addEventListener('change', toggleFormulaVisibility)
 resetButton.addEventListener('click', () => {
     resetCalculator()
     updateAll()
+})
+
+document.querySelectorAll('input').forEach((input) => {
+    input.addEventListener('focus', () => {
+        input.select()
+    })
 })
